@@ -83,6 +83,7 @@ inquirer.prompt([
                 let songTitle = song.song; 
                 let songFullTitle = songTitle.split(" "); 
                 let songSearch = songFullTitle.join("%20");
+                
                 console.log("Searching for " + songTitle);
 
                 //search spotify
@@ -93,20 +94,22 @@ inquirer.prompt([
                 })
                 //format & display results
                 .then(function(response) {
-       
+                    // console.log(response.tracks);
+                    // var stringify = JSON.stringify(response);
+                    // console.log(stringify);
+                    
+                
                     let song = response.tracks.items[0];
-                    console.log(response.tracks);
-                  
-                    if (song != undefined) {
-                        for (var i = 0; i < response.length; i++) {
-                            console.log("-----------------------------------------");
-                            console.log(song.name);
-                            console.log(song.artists.name);
-                            console.log(song.album.name);
-                            console.log(song.preview_url);
-                        }
-                    } else { 
-                        console.log("\n" + "No songs found, sorry!  Try again.");
+
+                    if (response.length != 0) {
+                        console.log("\n-----------------------------------------");
+                        console.log("\nSong: " + song.name);
+                        console.log("\nArtist: " + song.album.artists[0].name);
+                        console.log("\nAlbum: " + song.album.name);
+                        console.log("\nURL: " + song.preview_url);
+                        console.log("\n-----------------------------------------");
+                    } else {
+                        console.log("Need Ace of Base here");
                     }
                 })
                 //catch any errors

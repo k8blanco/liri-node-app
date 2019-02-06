@@ -1,0 +1,88 @@
+{
+    "tracks": {
+        "href": "https://api.spotify.com/v1/search?query=titanium&type=track&offset=0&limit=1",
+        "items": [{
+            "album": {
+                "album_type": "album",
+                "artists": [{
+                    "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/1Cs0zKBU1kc0i8ypK3B9ai"
+                    },
+                    "href": "https://api.spotify.com/v1/artists/1Cs0zKBU1kc0i8ypK3B9ai",
+                    "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+                    "name": "David Guetta",
+                    "type": "artist",
+                    "uri": "spotify:artist:1Cs0zKBU1kc0i8ypK3B9ai"
+                }],
+                "available_markets": ["CA", "US"],
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/album/08DAekBeqPRCsn3XHDwj6b"
+                },
+                "href": "https://api.spotify.com/v1/albums/08DAekBeqPRCsn3XHDwj6b",
+                "id": "08DAekBeqPRCsn3XHDwj6b",
+                "images": [{
+                    "height": 640,
+                    "url": "https://i.scdn.co/image/720390efacb1312e67a0989a31539ff539aacd90",
+                    "width": 640
+                }, {
+                    "height": 300,
+                    "url": "https://i.scdn.co/image/77bb3849a2ffc3635d1f6ae0e1e501a7132c7942",
+                    "width": 300
+                }, {
+                    "height": 64,
+                    "url": "https://i.scdn.co/image/2c4eacb887094ac97b0635719721d4e1ab533218",
+                    "width": 64
+                }],
+                "name": "Nothing But The Beat",
+                "release_date": "2011-08-31",
+                "release_date_precision": "day",
+                "total_tracks": 13,
+                "type": "album",
+                "uri": "spotify:album:08DAekBeqPRCsn3XHDwj6b"
+            },
+            "artists": [{
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1Cs0zKBU1kc0i8ypK3B9ai"
+                },
+                "href": "https://api.spotify.com/v1/artists/1Cs0zKBU1kc0i8ypK3B9ai",
+                "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+                "name": "David Guetta",
+                "type": "artist",
+                "uri": "spotify:artist:1Cs0zKBU1kc0i8ypK3B9ai"
+            }, {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/5WUlDfRSoLAfcVSX1WnrxN"
+                },
+                "href": "https://api.spotify.com/v1/artists/5WUlDfRSoLAfcVSX1WnrxN",
+                "id": "5WUlDfRSoLAfcVSX1WnrxN",
+                "name": "Sia",
+                "type": "artist",
+                "uri": "spotify:artist:5WUlDfRSoLAfcVSX1WnrxN"
+            }],
+            "available_markets": ["CA", "US"],
+            "disc_number": 1,
+            "duration_ms": 245040,
+            "explicit": false,
+            "external_ids": {
+                "isrc": "GB28K1100036"
+            },
+            "external_urls": {
+                "spotify": "https://open.spotify.com/track/77TT8Xvx637TpzV8kKGkUw"
+            },
+            "href": "https://api.spotify.com/v1/tracks/77TT8Xvx637TpzV8kKGkUw",
+            "id": "77TT8Xvx637TpzV8kKGkUw",
+            "is_local": false,
+            "name": "Titanium (feat. Sia)",
+            "popularity": 66,
+            "preview_url": "https://p.scdn.co/mp3-preview/06392eaab5975806f18d8411f5b58f50b1899198?cid=a96b6ad46e414d43af5b9625edeb4071",
+            "track_number": 13,
+            "type": "track",
+            "uri": "spotify:track:77TT8Xvx637TpzV8kKGkUw"
+        }],
+        "limit": 1,
+        "next": "https://api.spotify.com/v1/search?query=titanium&type=track&offset=1&limit=1",
+        "offset": 0,
+        "previous": null,
+        "total": 3312
+    }
+}
