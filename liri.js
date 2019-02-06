@@ -54,9 +54,11 @@ inquirer.prompt([
                         for (var i = 0; i < response.data.length; i++) {
                             console.log("-----------------------------------------");
                             console.log("\nVenue: " + response.data[i].venue.name);
+                            // console.log("\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYY"));
+                            //!!! need to add and format date of concerts here !!!
                             console.log("\nCity: " + response.data[i].venue.city);
                             console.log("\nState: " + response.data[i].venue.region + "\nCountry: " + response.data[i].venue.country);
-                            //!!! need to add and format date of concerts here !!! 
+                             
                         }
                     } else {
                         console.log("\nNo shows found for " + artistSearch);
@@ -148,16 +150,18 @@ inquirer.prompt([
                     //call axios
                     axios.get(movieQuery)
                     .then(function(response) {
-                      
-                        // console.log(response);
-                        console.log(response.data.Title);
-                        console.log(response.data.Year);
-                        console.log(response.data.imdbRating);
-                        //rotten tomatoes rating
-                        console.log(response.data.Country);
-                        console.log(response.data.Language);
-                        console.log(response.data.Plot);
-                        console.log(response.data.Actors);
+
+                        console.log("-----------------------------------------");
+                        console.log("\nMovie Title: " + response.data.Title);
+                        console.log("\nRelease Year: " + response.data.Year);
+                        console.log("\nimdb Rating: " + response.data.imdbRating);
+                        console.log("\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value); 
+                            console.log("** Guide to Rotten Tomatoes ratings: less than 60% is a 'splat,' or a bad review **");
+                        console.log("\nProduced in: " + response.data.Country);
+                        console.log("\nLanguage: " + response.data.Language);
+                        console.log("\nPlot Summary: " + response.data.Plot);
+                        console.log("\nActors: " + response.data.Actors);
+                        console.log("-----------------------------------------");
                         
                         //format and display results
                         if (response != 0) {//this needs to change, doesn't work
