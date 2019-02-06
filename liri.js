@@ -109,6 +109,7 @@ inquirer.prompt([
                         console.log("\nURL: " + song.preview_url);
                         console.log("\n-----------------------------------------");
                     } else {
+                        //!! default to Ace of Base if song not found/no song entered !!
                         console.log("Need Ace of Base here");
                     }
                 })
@@ -119,7 +120,7 @@ inquirer.prompt([
 
             });
             break;
-            // * If no song is provided then your program will default to "The Sign" by Ace of Base.
+
 
 
 //---------------------- movieThis --------------------------
