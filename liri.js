@@ -28,6 +28,7 @@ inquirer.prompt([
 //---------------------- concertThis --------------------------
 
         case "Find a concert":
+
             inquirer.prompt([
                 {
                     type: "input",
@@ -39,7 +40,7 @@ inquirer.prompt([
                 let artistName = artist.artist; //this is the artist name
                 let artistFullName = artistName.split(" "); //this parses the artist name
                 let artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
-                console.log("Searching for " + artistName + "concerts");
+                console.log("\nSearching for " + artistName + " concerts");
 
                 //fill bands in town query URL
                 let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
@@ -52,13 +53,13 @@ inquirer.prompt([
                     if (response != 0) {
                         for (var i = 0; i < response.data.length; i++) {
                             console.log("-----------------------------------------");
-                            console.log(response.data[i].venue.name);
-                            console.log(response.data[i].venue.city);
-                            console.log(response.data[i].venue.region + response.data[i].venue.country);
+                            console.log("\nVenue: " + response.data[i].venue.name);
+                            console.log("\nCity: " + response.data[i].venue.city);
+                            console.log("\nState: " + response.data[i].venue.region + "\nCountry: " + response.data[i].venue.country);
                             //!!! need to add and format date of concerts here !!! 
                         }
                     } else {
-                        console.log("\n" + "No shows found for " + artistSearch);
+                        console.log("\nNo shows found for " + artistSearch);
                     };
                 }) 
                 //catch any errors
@@ -72,6 +73,7 @@ inquirer.prompt([
 //---------------------- spotifyThis --------------------------
 
         case "Find a song":
+
             inquirer.prompt([
                 {
                     type: "input",
@@ -84,7 +86,7 @@ inquirer.prompt([
                 let songFullTitle = songTitle.split(" "); 
                 let songSearch = songFullTitle.join("%20");
                 
-                console.log("Searching for " + songTitle);
+                console.log("\nSearching for " + songTitle);
 
                 //search spotify
                 spotify.search({
@@ -101,7 +103,7 @@ inquirer.prompt([
                 
                     let song = response.tracks.items[0];
 
-                    if (response.length != 0) {
+                    if (response.length != 0) {//this needs to change - response.length doesn't work here
                         console.log("\n-----------------------------------------");
                         console.log("\nSong: " + song.name);
                         console.log("\nArtist: " + song.album.artists[0].name);
@@ -126,6 +128,7 @@ inquirer.prompt([
 //---------------------- movieThis --------------------------
 
             case "Find a movie":
+
                 inquirer.prompt([
                     {
                         type: "input",
@@ -145,9 +148,19 @@ inquirer.prompt([
                     //call axios
                     axios.get(movieQuery)
                     .then(function(response) {
+                      
+                        // console.log(response);
+                        console.log(response.data.Title);
+                        console.log(response.data.Year);
+                        console.log(response.data.imdbRating);
+                        //rotten tomatoes rating
+                        console.log(response.data.Country);
+                        console.log(response.data.Language);
+                        console.log(response.data.Plot);
+                        console.log(response.data.Actors);
                         
                         //format and display results
-                        if (response != 0) {
+                        if (response != 0) {//this needs to change, doesn't work
                             for (var i = 0; i < response.data.length; i++) {
                                 console.log("-----------------------------------------");
                                 console.log(response)
@@ -165,7 +178,15 @@ inquirer.prompt([
                 break;
           
             
-    
+                // * Title of the movie.  t
+                // * Year the movie came out. y
+                // * IMDB Rating of the movie.
+                // * Rotten Tomatoes Rating of the movie.
+                // * Country where the movie was produced.
+                // * Language of the movie.
+                // * Plot of the movie.
+                // * Actors in the movie.
+
         //call dowhatitsays code block
 
     }
