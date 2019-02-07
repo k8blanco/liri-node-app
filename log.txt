@@ -1,11 +1,173 @@
 
+Concert Search: Ed Sheeran
+
+Venue: Allianz Parque
+Date: 02/13/2019
+City: Sao Paulo
+State: 
+Country: Brazil
+
+Venue: Allianz Parque
+Date: 02/14/2019
+City: Sao Paulo
+State: 
+Country: Brazil
+
+Venue: Arena do Grêmio
+Date: 02/17/2019
+City: Porto Alegre
+State: 
+Country: Brazil
+
+Venue: National Stadium, Singapore Sports Hub
+Date: 04/26/2019
+City: Singapore
+State: 
+Country: Singapore
+
+Venue: Groupama Stadium
+Date: 05/26/2019
+City: Decines Charpieu
+State: 
+Country: France
+
+Venue: Estadio da Luz
+Date: 06/02/2019
+City: Lisbon
+State: 
+Country: Portugal
+
+Venue: Visarno Arena
+Date: 06/14/2019
+City: Florence
+State: 
+Country: Italy
+
+Venue: Stadio San Siro
+Date: 06/19/2019
+City: Milano
+State: 
+Country: Italy
+
+Venue: Hockenheimring
+Date: 06/22/2019
+City: Hockenheim
+State: 
+Country: Germany
+
+Venue: Wörthersee Stadion
+Date: 06/29/2019
+City: Klagenfurt
+State: 
+Country: Austria
+
+Venue: NATIONAL ARENA
+Date: 07/03/2019
+City: Bucuresti
+State: 
+Country: Romania
+
+Venue: Letiště Letňany
+Date: 07/08/2019
+City: Praha
+State: 
+Country: Czech Republic
+
+Venue: Malmi Airport
+Date: 07/23/2019
+City: Helsinki (fin)
+State: 
+Country: Germany
+
+Venue: Tusindårsskoven
+Date: 07/27/2019
+City: Odense
+State: 
+Country: Denmark
+
+Venue: Messegelände
+Date: 08/03/2019
+City: Hanover
+State: 
+Country: Germany
+
+Venue: Ile Obudai / Hongrie
+Date: 08/07/2019
+City: Budapest
+State: 
+Country: France
+
+Venue: Laugardalsvöllur
+Date: 08/11/2019
+City: Reykjavik
+State: 
+Country: Iceland
+
+Venue: Chantry Park
+Date: 08/25/2019
+City: Suffolk Hill
+State: 
+Country: United Kingdom
+
+Venue: Chantry Park
+Date: 08/26/2019
+City: Suffolk Hill
+State: 
+Country: United Kingdom
 Song Search: Black Magic Woman
 
 Song: Black Magic Woman
 Artist: Santana
 Album: Ultimate Santana
 URL: https://p.scdn.co/mp3-preview/6ba9b626bb0d823e7fb4cbb24a0411d0a445790d?cid=a96b6ad46e414d43af5b9625edeb4071
-Song Search: supermn
+Song Search: Supermassive Black Hole
 
-Uh oh, I couldn't find that song!
-Movie Search: nordic
+Song: Supermassive Black Hole
+Artist: Muse
+Album: Black Holes And Revelations
+URL: https://p.scdn.co/mp3-preview/7ab3e38ce1671da3a185d8685981983a6f39b7bd?cid=a96b6ad46e414d43af5b9625edeb4071
+Movie Search: Practical%20Magic
+
+Movie Title: Practical Magic
+Release Year: 1998
+imdb Rating: 6.2
+Rotten Tomatoes Rating: 20%
+Produced in: USA
+Language: English
+Plot Summary: Two witch sisters, raised by their eccentric aunts in a small town, face closed-minded prejudice and a curse which threatens to prevent them ever finding lasting love.
+Actors: Sandra Bullock, Nicole Kidman, Stockard Channing, Dianne Wiest
+Song Search: The Sign ace of base
+
+Song: The Sign
+Artist: Ace of Base
+Album: The Sign (US Album) [Remastered]
+URL: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=a96b6ad46e414d43af5b9625edeb4071
+Movie Search: Mr.+Nobody
+
+Movie Title: Mr. Nobody
+Release Year: 2009
+imdb Rating: 7.8
+Rotten Tomatoes Rating: 67%
+Produced in: Belgium, Germany, Canada, France, USA, UK
+Language: English, Mohawk
+Plot Summary: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Actors: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+
+Song: I Want It That Way
+Artist: Backstreet Boys
+Album: The Hits--Chapter One
+URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=a96b6ad46e414d43af5b9625edeb4071
+
+Movie Title: Air Bud
+Release Year: 1997
+imdb Rating: 5.2
+Rotten Tomatoes Rating: 45%
+Produced in: USA, Canada
+Language: English
+Plot Summary: A young boy and a talented stray dog with an amazing basketball playing ability become instant friends. Rebounding from his father's accidental death, 12-year-old Josh Framm moves with his ...
+Actors: Michael Jeter, Kevin Zegers, Wendy Makkena, Bill Cobbs
+
+No shows found for "Muse"
+
+
+No shows found for "Metallica"
