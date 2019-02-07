@@ -10,7 +10,7 @@ var colors = require("colors");
 
 //spotify variables
 var keys = require("./keys.js");
-var spotify = new Spotify(keys.spotify);n
+var spotify = new Spotify(keys.spotify);
 
 //global command variables
 var artistSearch
