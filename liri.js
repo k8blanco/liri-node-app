@@ -46,34 +46,35 @@ inquirer.prompt([
             ]).then(function(artist) {
                 let artistName = artist.artist; //this is the artist name
                 let artistFullName = artistName.split(" "); //this parses the artist name
-                let artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
+                artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
 
+                concertCall();
                 
-                //fill bands in town query URL
-                let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
+                // //fill bands in town query URL
+                // let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
 
-                //call axios
-                axios.get(concertQuery)
-                .then(function(response) {
+                // //call axios
+                // axios.get(concertQuery)
+                // .then(function(response) {
             
-                    //format & display results 
-                    if (response.data.length > 0) {
-                        for (var i = 0; i < response.data.length; i++) {
-                            console.log("-----------------------------------------".blue);
-                            console.log("\nVenue: ".green + response.data[i].venue.name);
-                            console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
-                            console.log("\nCity: ".green + response.data[i].venue.city);
-                            console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
+                //     //format & display results 
+                //     if (response.data.length > 0) {
+                //         for (var i = 0; i < response.data.length; i++) {
+                //             console.log("-----------------------------------------".blue);
+                //             console.log("\nVenue: ".green + response.data[i].venue.name);
+                //             console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+                //             console.log("\nCity: ".green + response.data[i].venue.city);
+                //             console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
                              
-                        }
-                    } else {
-                        console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
-                    };
-                }) 
-                //catch any errors
-                .catch(function(err) {
-                    console.log(err);
-                })
+                //         }
+                //     } else {
+                //         console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
+                //     };
+                // }) 
+                // //catch any errors
+                // .catch(function(err) {
+                //     console.log(err);
+                // })
 
             });
             break;
@@ -211,7 +212,35 @@ inquirer.prompt([
 
 });
           
+//global functions
 
+function concertCall() {
+    //fill bands in town query URL
+    var concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
+
+    //call axios
+    axios.get(concertQuery)
+    .then(function(response) {
+
+        //format & display results 
+        if (response.data.length > 0) {
+            for (var i = 0; i < response.data.length; i++) {
+                console.log("-----------------------------------------".blue);
+                console.log("\nVenue: ".green + response.data[i].venue.name);
+                console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
+                console.log("\nCity: ".green + response.data[i].venue.city);
+                console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
+                 
+            }
+        } else {
+            console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
+        };
+    }) 
+    //catch any errors
+    .catch(function(err) {
+        console.log(err);
+    })
+};
 
 
 // TO DO:
