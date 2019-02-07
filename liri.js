@@ -49,32 +49,6 @@ inquirer.prompt([
                 artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
 
                 concertCall();
-                
-                // //fill bands in town query URL
-                // let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
-
-                // //call axios
-                // axios.get(concertQuery)
-                // .then(function(response) {
-            
-                //     //format & display results 
-                //     if (response.data.length > 0) {
-                //         for (var i = 0; i < response.data.length; i++) {
-                //             console.log("-----------------------------------------".blue);
-                //             console.log("\nVenue: ".green + response.data[i].venue.name);
-                //             console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
-                //             console.log("\nCity: ".green + response.data[i].venue.city);
-                //             console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
-                             
-                //         }
-                //     } else {
-                //         console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
-                //     };
-                // }) 
-                // //catch any errors
-                // .catch(function(err) {
-                //     console.log(err);
-                // })
 
             });
             break;
@@ -146,7 +120,10 @@ inquirer.prompt([
     
 
                         if (caseDataArr[0] === "Find a concert") {
-                            artistSearch = caseDataArr[1];
+                            let artistName = caseDataArr[1];
+                            //split name and URL-ify it
+                            let artistFullName = artistName.split(" ");
+                            artistSearch = artistFullName.join("%20");
                             concertCall();
                         }
 
@@ -156,7 +133,10 @@ inquirer.prompt([
                         }
 
                         else if (caseDataArr[0] === "Find a movie") {
-                            movieSearch = caseDataArr[1];
+                            let movieTitle = caseDataArr[1];
+                            //split movie name and URL-ify it
+                            let movieFullTitle = movieTitle.split(" ");
+                            movieSearch = movieFullTitle.join("%20");
                             movieCall();
                         }
 
@@ -254,10 +234,5 @@ function movieCall() {
 
 // TO DO:
     // make recursive
-    // add moment/format concert date
-    // do whatitsays
-    // fix if statements
-    // default to Ace of Base - songs
-    // default to Mr Nobody - movies
     // add in error catching for URL = null
 
