@@ -1,15 +1,21 @@
 require("dotenv").config();
 
-//require variables
+//required package variables
 var axios = require("axios");
 var inquirer = require("inquirer");
 var Spotify = require("node-spotify-api");
-var colors = require("colors");
+var moment = require("moment");
 var fs = require("fs");
+var colors = require("colors");
 
 //spotify variables
 var keys = require("./keys.js");
 var spotify = new Spotify(keys.spotify);
+
+//global command variables
+var artistSearch
+var songSearch
+var movieSearch
 
 
 inquirer.prompt([
@@ -17,7 +23,7 @@ inquirer.prompt([
         type: "list",
         name: "command",
         message: "Your wish is my command - what would you like to do?",
-        choices: ["Find a concert", "Find a song", "Find a movie"]
+        choices: ["Find a concert", "Find a song", "Find a movie", "Do what it says"]
     }
 
 ])
@@ -41,8 +47,8 @@ inquirer.prompt([
                 let artistName = artist.artist; //this is the artist name
                 let artistFullName = artistName.split(" "); //this parses the artist name
                 let artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
-                console.log("\n...Searching for ".blue + artistName.blue + " concerts...".blue);
 
+                
                 //fill bands in town query URL
                 let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
 
@@ -51,12 +57,11 @@ inquirer.prompt([
                 .then(function(response) {
             
                     //format & display results 
-                    if (response != 0) {
+                    if (response.data.length > 0) {
                         for (var i = 0; i < response.data.length; i++) {
                             console.log("-----------------------------------------".blue);
                             console.log("\nVenue: ".green + response.data[i].venue.name);
-                            // console.log("\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYY"));
-                            //!!! need to add and format date of concerts here !!!
+                            console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
                             console.log("\nCity: ".green + response.data[i].venue.city);
                             console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
                              
@@ -85,12 +90,12 @@ inquirer.prompt([
                 },
 
             ]).then(function(song) {
-                let songTitle = song.song; 
-                let songFullTitle = songTitle.split(" "); 
-                let songSearch = songFullTitle.join("%20");
-                
-                console.log("\n...Searching for ".blue + songTitle.blue + "...".blue);
 
+                if (song.song == "") {
+                    var songSearch = "The Sign ace of base";
+                } else {
+                    songSearch = song.song;
+                };
              
                 spotify.search({
                     type: "track",
@@ -102,18 +107,15 @@ inquirer.prompt([
         
                     let song = response.tracks.items[0];
 
-                    if (response.length != 0) {//this needs to change - response.length doesn't work here
-                        console.log("\n-----------------------------------------".blue);
-                        console.log("\nSong: ".magenta + song.name);
-                        console.log("\nArtist: ".magenta + song.album.artists[0].name);
-                        console.log("\nAlbum: ".magenta + song.album.name);
-                        console.log("\nURL: ".magenta + song.preview_url);
-                        console.log("\n-----------------------------------------".blue);
-                    } else {
-                        //!! default to Ace of Base if song not found/no song entered !!
-                        console.log("Need Ace of Base here");
-                    }
+                    console.log("\n-----------------------------------------".blue);
+                    console.log("\nSong: ".magenta + song.name);
+                    console.log("\nArtist: ".magenta + song.album.artists[0].name);
+                    console.log("\nAlbum: ".magenta + song.album.name);
+                    console.log("\nURL: ".magenta + song.preview_url);
+                    console.log("\n-----------------------------------------".blue);
+                    
                 })
+
                 //catch any errors
                 .catch(function(err) {
                     console.log(err);
@@ -136,11 +138,15 @@ inquirer.prompt([
                     },
 
                 ]).then(function(movie) {
-                    let movieTitle = movie.movie;
-                    let movieFullTitle = movieTitle.split(" ");
-                    let movieSearch = movieFullTitle.join("%20");
-                    console.log("\n...Searching for ".blue + movieTitle.blue + "...".blue);
 
+                    if (movie.movie == "") {
+                        var movieSearch = "Mr.+Nobody";
+                    } else {
+                        let movieTitle = movie.movie;
+                        let movieFullTitle = movieTitle.split(" ");
+                        var movieSearch = movieFullTitle.join("%20");
+                    }
+            
                     //fill query URL
                     let movieQuery = "http://www.omdbapi.com/?t=" + movieSearch + "&y=&plot=short&apikey=trilogy"
 
@@ -159,16 +165,7 @@ inquirer.prompt([
                         console.log("\nPlot Summary: ".green + response.data.Plot);
                         console.log("\nActors: ".green + response.data.Actors);
                         console.log("\n-----------------------------------------".blue);
-                        
-                        //format and display results
-                        if (response != 0) {//this needs to change, doesn't work
-                            for (var i = 0; i < response.data.length; i++) {
-                                console.log("\n-----------------------------------------");
-                                console.log(response)
-                            }
-                        } else {
-                            console.log("\n" + "No movies matching " + movieTitle + "were found.");
-                        };
+                    
                     })
                     //catch any errors
                     .catch(function(err) {
@@ -179,8 +176,36 @@ inquirer.prompt([
                 break;
           
             
+//---------------------- Do what it says --------------------------
+                case "Do what it says":
 
-        //call dowhatitsays code block
+                    fs.readFile("random.txt", "utf8", function(err, data) {
+                        if (err){
+                            console.log(error);
+                        } 
+
+                        console.log(data);
+                        var caseDataArr = data.split(",");
+
+    
+
+                        if (caseDataArr[0] === "Find a concert") {
+                            artistSearch = caseDataArr[1];
+                        }
+
+                        else if (caseDataArr[0] === "Find a song") {
+                            songSearch = caseDataArr[1];
+                        }
+
+                        else if (caseDataArr[0] === "Find a movie") {
+                            movieSearch = caseDataArr[1];
+                        }
+
+                       
+
+            
+                    })
+
 
     }
 
@@ -190,7 +215,6 @@ inquirer.prompt([
 
 
 // TO DO:
-    // add colors
     // make recursive
     // add moment/format concert date
     // do whatitsays
