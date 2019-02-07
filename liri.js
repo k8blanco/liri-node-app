@@ -93,34 +93,12 @@ inquirer.prompt([
             ]).then(function(song) {
 
                 if (song.song == "") {
-                    var songSearch = "The Sign ace of base";
+                    songSearch = "The Sign ace of base";
                 } else {
                     songSearch = song.song;
                 };
-             
-                spotify.search({
-                    type: "track",
-                    query: songSearch,
-                    limit: 1,
-                })
-              
-                .then(function(response) {
-        
-                    let song = response.tracks.items[0];
-
-                    console.log("\n-----------------------------------------".blue);
-                    console.log("\nSong: ".magenta + song.name);
-                    console.log("\nArtist: ".magenta + song.album.artists[0].name);
-                    console.log("\nAlbum: ".magenta + song.album.name);
-                    console.log("\nURL: ".magenta + song.preview_url);
-                    console.log("\n-----------------------------------------".blue);
-                    
-                })
-
-                //catch any errors
-                .catch(function(err) {
-                    console.log(err);
-                })
+                
+                songCall();
 
             });
             break;
@@ -141,38 +119,15 @@ inquirer.prompt([
                 ]).then(function(movie) {
 
                     if (movie.movie == "") {
-                        var movieSearch = "Mr.+Nobody";
+                        movieSearch = "Mr.+Nobody";
                     } else {
                         let movieTitle = movie.movie;
                         let movieFullTitle = movieTitle.split(" ");
-                        var movieSearch = movieFullTitle.join("%20");
+                        movieSearch = movieFullTitle.join("%20");
                     }
             
-                    //fill query URL
-                    let movieQuery = "http://www.omdbapi.com/?t=" + movieSearch + "&y=&plot=short&apikey=trilogy"
-
-                    //call axios
-                    axios.get(movieQuery)
-                    .then(function(response) {
-
-                        console.log("\n-----------------------------------------".blue);
-                        console.log("\nMovie Title: ".green + response.data.Title);
-                        console.log("\nRelease Year: ".green + response.data.Year);
-                        console.log("\nimdb Rating: ".green + response.data.imdbRating);
-                        console.log("\nRotten Tomatoes Rating: ".green + response.data.Ratings[1].Value); 
-                            console.log("** Guide to Rotten Tomatoes ratings: less than 60% is a 'splat,' or a bad review **".red);
-                        console.log("\nProduced in: ".green + response.data.Country);
-                        console.log("\nLanguage: ".green + response.data.Language);
-                        console.log("\nPlot Summary: ".green + response.data.Plot);
-                        console.log("\nActors: ".green + response.data.Actors);
-                        console.log("\n-----------------------------------------".blue);
-                    
-                    })
-                    //catch any errors
-                    .catch(function(err) {
-                        console.log(err);
-                    })
-            
+                    movieCall();
+ 
                 });
                 break;
           
@@ -192,20 +147,20 @@ inquirer.prompt([
 
                         if (caseDataArr[0] === "Find a concert") {
                             artistSearch = caseDataArr[1];
+                            concertCall();
                         }
 
                         else if (caseDataArr[0] === "Find a song") {
                             songSearch = caseDataArr[1];
+                            songCall();
                         }
 
                         else if (caseDataArr[0] === "Find a movie") {
                             movieSearch = caseDataArr[1];
+                            movieCall();
                         }
 
-                       
-
-            
-                    })
+                    });
 
 
     }
@@ -216,7 +171,7 @@ inquirer.prompt([
 
 function concertCall() {
     //fill bands in town query URL
-    var concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
+    let concertQuery = "https://rest.bandsintown.com/artists/" + artistSearch + "/events?app_id=codingbootcamp"
 
     //call axios
     axios.get(concertQuery)
@@ -236,6 +191,60 @@ function concertCall() {
             console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
         };
     }) 
+    //catch any errors
+    .catch(function(err) {
+        console.log(err);
+    })
+};
+
+function songCall() {
+
+    spotify.search({
+        type: "track",
+        query: songSearch,
+        limit: 1,
+    })
+  
+    .then(function(response) {
+
+        let song = response.tracks.items[0];
+
+        console.log("\n-----------------------------------------".blue);
+        console.log("\nSong: ".magenta + song.name);
+        console.log("\nArtist: ".magenta + song.album.artists[0].name);
+        console.log("\nAlbum: ".magenta + song.album.name);
+        console.log("\nURL: ".magenta + song.preview_url);
+        console.log("\n-----------------------------------------".blue);
+        
+    })
+
+    //catch any errors
+    .catch(function(err) {
+        console.log(err);
+    })
+};
+
+function movieCall() {
+    //fill query URL
+    let movieQuery = "http://www.omdbapi.com/?t=" + movieSearch + "&y=&plot=short&apikey=trilogy"
+
+    //call axios
+    axios.get(movieQuery)
+    .then(function(response) {
+
+        console.log("\n-----------------------------------------".blue);
+        console.log("\nMovie Title: ".green + response.data.Title);
+        console.log("\nRelease Year: ".green + response.data.Year);
+        console.log("\nimdb Rating: ".green + response.data.imdbRating);
+        console.log("\nRotten Tomatoes Rating: ".green + response.data.Ratings[1].Value); 
+            console.log("** Guide to Rotten Tomatoes ratings: less than 60% is a 'splat,' or a bad review **".red);
+        console.log("\nProduced in: ".green + response.data.Country);
+        console.log("\nLanguage: ".green + response.data.Language);
+        console.log("\nPlot Summary: ".green + response.data.Plot);
+        console.log("\nActors: ".green + response.data.Actors);
+        console.log("\n-----------------------------------------".blue);
+    
+    })
     //catch any errors
     .catch(function(err) {
         console.log(err);
