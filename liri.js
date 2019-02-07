@@ -49,8 +49,10 @@ inquirer.prompt([
                 artistSearch = artistFullName.join("%20"); //this joins the artist name with %20 instead of spaces
 
                 concertCall();
+                logToFile("Concert Search: " + artistName);
 
             });
+  
             break;
 
 //---------------------- spotifyThis --------------------------
@@ -70,9 +72,10 @@ inquirer.prompt([
                     songSearch = "The Sign ace of base";
                 } else {
                     songSearch = song.song;
-                };
-                
+                };       
+
                 songCall();
+                logToFile("Song Search: " + songSearch);
 
             });
             break;
@@ -99,8 +102,9 @@ inquirer.prompt([
                         let movieFullTitle = movieTitle.split(" ");
                         movieSearch = movieFullTitle.join("%20");
                     }
-            
+                    
                     movieCall();
+                    logToFile("Movie Search: " + movieSearch);
  
                 });
                 break;
@@ -165,10 +169,17 @@ function concertCall() {
                 console.log("\nDate: ".green + moment(response.data[i].datetime).format("MM/DD/YYYY"));
                 console.log("\nCity: ".green + response.data[i].venue.city);
                 console.log("\nState: ".green + response.data[i].venue.region + "\nCountry: ".green + response.data[i].venue.country);
-                 
+
+                logToFile(
+                    "\nVenue: " + response.data[i].venue.name +
+                    "\nDate: " + moment(response.data[i].datetime).format("MM/DD/YYYY") +
+                    "\nCity: " + response.data[i].venue.city +
+                    "\nState: " + response.data[i].venue.region + 
+                    "\nCountry: " + response.data[i].venue.country);                     
             }
         } else {
             console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
+            logToFile("\nNo shows found for " + artistSearch);
         };
     }) 
     //catch any errors
@@ -196,6 +207,11 @@ function songCall() {
         console.log("\nURL: ".magenta + song.preview_url);
         console.log("\n-----------------------------------------".blue);
         
+        logToFile(
+            "\nSong: " + song.name +
+            "\nArtist: " + song.album.artists[0].name +
+            "\nAlbum: " + song.album.name +
+            "\nURL: " + song.preview_url);
     })
 
     //catch any errors
@@ -213,23 +229,40 @@ function movieCall() {
     .then(function(response) {
 
         console.log("\n-----------------------------------------".blue);
-        console.log("\nMovie Title: ".green + response.data.Title);
-        console.log("\nRelease Year: ".green + response.data.Year);
-        console.log("\nimdb Rating: ".green + response.data.imdbRating);
-        console.log("\nRotten Tomatoes Rating: ".green + response.data.Ratings[1].Value); 
+        console.log("\nMovie Title: ".green + response.data.Title);         
+        console.log("\nRelease Year: ".green + response.data.Year);          
+        console.log("\nimdb Rating: ".green + response.data.imdbRating);       
+        console.log("\nRotten Tomatoes Rating: ".green + response.data.Ratings[1].Value);           
             console.log("** Guide to Rotten Tomatoes ratings: less than 60% is a 'splat,' or a bad review **".red);
-        console.log("\nProduced in: ".green + response.data.Country);
+        console.log("\nProduced in: ".green + response.data.Country);    
         console.log("\nLanguage: ".green + response.data.Language);
         console.log("\nPlot Summary: ".green + response.data.Plot);
         console.log("\nActors: ".green + response.data.Actors);
         console.log("\n-----------------------------------------".blue);
-    
+
+        logToFile(
+            "\nMovie Title: " + response.data.Title +
+            "\nRelease Year: " + response.data.Year +
+            "\nimdb Rating: " + response.data.imdbRating +
+            "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value +
+            "\nProduced in: " + response.data.Country +
+            "\nLanguage: " + response.data.Language +
+            "\nPlot Summary: " + response.data.Plot +
+            "\nActors: " + response.data.Actors);
+
     })
     //catch any errors
     .catch(function(err) {
         console.log(err);
     })
 };
+
+
+function logToFile(logText) {
+    fs.appendFile('log.txt', "\n" + logText, function (err) {
+        if (err) throw err;
+    });
+}
 
 
 // TO DO:
