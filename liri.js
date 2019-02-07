@@ -17,6 +17,9 @@ var artistSearch
 var songSearch
 var movieSearch
 
+//make recursive
+
+var askLIRI = function() {
 
 inquirer.prompt([
     {
@@ -121,7 +124,6 @@ inquirer.prompt([
                         console.log(data);
                         var caseDataArr = data.split(",");
 
-    
 
                         if (caseDataArr[0] === "Find a concert") {
                             let artistName = caseDataArr[1];
@@ -145,12 +147,18 @@ inquirer.prompt([
                         }
 
                     });
+                break;
 
 
     }
-
+   
 });
-          
+
+};
+
+//call askLIRI run code
+askLIRI();
+
 //global functions
 
 function concertCall() {
@@ -162,7 +170,7 @@ function concertCall() {
     .then(function(response) {
 
         //format & display results 
-        if (response.data.length > 0) {
+        if (response.data.length > 0 && response.data[0].venue != undefined) {
             for (var i = 0; i < response.data.length; i++) {
                 console.log("-----------------------------------------".blue);
                 console.log("\nVenue: ".green + response.data[i].venue.name);
@@ -181,6 +189,8 @@ function concertCall() {
             console.log("\nNo shows found for ".underline.red + artistSearch.underline.red);
             logToFile("\nNo shows found for " + artistSearch);
         };
+
+        recursion();
     }) 
     //catch any errors
     .catch(function(err) {
@@ -200,6 +210,7 @@ function songCall() {
 
         let song = response.tracks.items[0];
 
+        if (song != undefined) {
         console.log("\n-----------------------------------------".blue);
         console.log("\nSong: ".magenta + song.name);
         console.log("\nArtist: ".magenta + song.album.artists[0].name);
@@ -212,6 +223,11 @@ function songCall() {
             "\nArtist: " + song.album.artists[0].name +
             "\nAlbum: " + song.album.name +
             "\nURL: " + song.preview_url);
+        } else {
+            console.log("\nUh oh, I couldn't find that song!".underline.red);
+            logToFile("\nUh oh, I couldn't find that song!");
+        }
+            recursion();
     })
 
     //catch any errors
@@ -227,7 +243,7 @@ function movieCall() {
     //call axios
     axios.get(movieQuery)
     .then(function(response) {
-
+        if (response.data.Title != undefined) {
         console.log("\n-----------------------------------------".blue);
         console.log("\nMovie Title: ".green + response.data.Title);         
         console.log("\nRelease Year: ".green + response.data.Year);          
@@ -250,6 +266,12 @@ function movieCall() {
             "\nPlot Summary: " + response.data.Plot +
             "\nActors: " + response.data.Actors);
 
+        } else {
+            console.log("\nUh oh, couldn't find that movie!".underline.red);
+            logToFile("\nUh oh, couldn't find that movie!");
+        }
+            recursion();
+
     })
     //catch any errors
     .catch(function(err) {
@@ -264,8 +286,25 @@ function logToFile(logText) {
     });
 }
 
+function recursion() {
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Want to search again?",
+            name: "confirm",
+            default: true
+        }
+    ])
+    .then(function(inquirerResponse) {
+        if (inquirerResponse.confirm) {
+            askLIRI();
+        } else {
+            console.log("\nOk, see you later then!");
+        }
+    }); 
+};
+
 
 // TO DO:
-    // make recursive
     // add in error catching for URL = null
 
