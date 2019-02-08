@@ -18,4 +18,4 @@ moment, and FS.  LIRI also calls Colors in order to make the interface more user
 https://drive.google.com/file/d/126RF6BhyMs-2c5pKn6rYWaxOYH0EE2QI/view?usp=sharing
 
 * Link to LIRI log.txt file demo:
-https://drive.google.com/file/d/1lYRBiYs7QgjdEfMsgvRYZVjHxfCyNiPG/view
+https://drive.google.com/file/d/1o3CRzDZIuFUC_nJpn1BuiKU91s4y-H1f/view?usp=sharing
